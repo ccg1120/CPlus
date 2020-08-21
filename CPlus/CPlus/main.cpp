@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include "Point.h"
 
 #define SQUARE(x) ((x)*(x))
 
@@ -15,7 +16,6 @@ template <typename T>
 inline T SQUARE3(T x)
 {
 	return x * x;
-
 }
 
 namespace hi
@@ -33,17 +33,47 @@ struct Account
 	char Name[NAME_LENGHT];
 	int Money;
 };
+
+
 void CreateAccount();
 int ShowMeneAndUserInput();
 void DepositMenuAndUserInput();
 void WithdrawalMenuAndInput();
 int AccountCheck(int);
 void PrintAccountInfo();
+void SwapByRef2(int& , int& );
 std::vector<Account> m_AccountList;
 
 
 int main()
 {
+	Point p1(1,2);
+	Point* p2 = new Point(3, 4);
+
+	AAA a;
+	BBB b(a, 100);
+	a.AddNum();
+	std::cout << std::endl;
+	b.ShowText();
+	std::cout << std::endl;
+	a.AddNum();
+	b.ShowText();
+	AAA aa = a.GetInstance(3000);
+	AAA* aa2 = a.GetInstance2(4000);
+
+	int num = 12;
+	int* pnum = &num;
+	int** ppnum = &pnum;
+
+	int& num2 = num;
+	int* (&refnum2) = pnum;
+	int** (&refnum3) = ppnum;
+
+	int swapnum1 = 10;
+	int swapnum2 = 20;
+	std::cout << "num1 : " << swapnum1 << ", num2 : " << swapnum2 << std::endl;
+	SwapByRef2(swapnum1, swapnum2);
+	std::cout << "num1 : " << swapnum1 << ", num2 : " << swapnum2 << std::endl;
 	
 	for (;;)
 	{
@@ -76,6 +106,12 @@ int main()
 	return 0;
 }
 
+void SwapByRef2(int &num, int &num2)
+{
+	int temp = num;
+	num = num2;
+	num2 = temp;
+}
 
 int ShowMeneAndUserInput()
 {
